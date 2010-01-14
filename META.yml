@@ -1,0 +1,65 @@
+---
+abstract: 'download & manage memoir44 scenarios from official website'
+author:
+  - 'Jerome Quelin'
+build_requires:
+  Module::Build: 0.3601
+configure_requires:
+  Module::Build: 0.3601
+generated_by: 'Dist::Zilla version 1.100130'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: WWW-DaysOfWonder-Memoir44
+provides:
+  WWW::DaysOfWonder::Memoir44:
+    file: lib/WWW/DaysOfWonder/Memoir44.pm
+    version: 1.100140
+  WWW::DaysOfWonder::Memoir44::App:
+    file: lib/WWW/DaysOfWonder/Memoir44/App.pm
+    version: 1.100140
+  WWW::DaysOfWonder::Memoir44::App::Command::update:
+    file: lib/WWW/DaysOfWonder/Memoir44/App/Command/update.pm
+    version: 1.100140
+  WWW::DaysOfWonder::Memoir44::DB:
+    file: lib/WWW/DaysOfWonder/Memoir44/DB.pm
+    version: 1.100140
+  WWW::DaysOfWonder::Memoir44::Types:
+    file: lib/WWW/DaysOfWonder/Memoir44/Types.pm
+    version: 1.100140
+  WWW::DaysOfWonder::Memoir44::Url:
+    file: lib/WWW/DaysOfWonder/Memoir44/Url.pm
+    version: 1.100140
+  WWW::DaysOfWonder::Memoir44::Utils:
+    file: lib/WWW/DaysOfWonder/Memoir44/Utils.pm
+    version: 1.100140
+requires:
+  App::Cmd::Setup: 0
+  English: 0
+  File::BaseDir: 0
+  File::Find: 0
+  File::ShareDir: 0
+  File::Spec::Functions: 0
+  FindBin: 0
+  HTML::TreeBuilder: 0
+  LWP::UserAgent: 0
+  Moose: 0
+  Moose::Util::TypeConstraints: 0
+  MooseX::Has::Sugar: 0
+  ORLite: 0
+  ORLite::Migrate: 0
+  ORLite::Migrate::Patch: 0
+  Path::Class: 0
+  Sub::Exporter: 0
+  Term::ProgressBar::Quiet: 0
+  Term::Twiddle::Quiet: 0
+  Test::More: 0
+  Text::Trim: 0
+  URI: 0
+  overload: 0
+  perl: 5.010
+resources:
+  homepage: http://search.cpan.org/dist/WWW-DaysOfWonder-Memoir44
+  repository: http://github.com/jquelin/www-daysofwonder-memoir44
+version: 1.100140
