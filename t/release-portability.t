@@ -1,12 +1,12 @@
 #!perl
-# 
+#
 # This file is part of WWW-DaysOfWonder-Memoir44
-# 
+#
 # This software is copyright (c) 2009 by Jerome Quelin.
-# 
+#
 # This is free software; you can redistribute it and/or modify it under
 # the same terms as the Perl 5 programming language system itself.
-# 
+#
 
 BEGIN {
   unless ($ENV{RELEASE_TESTING}) {
@@ -18,6 +18,7 @@ BEGIN {
 
 use Test::More;
 
-eval "use Test::CPAN::Meta";
-plan skip_all => "Test::CPAN::Meta required for testing META.yml" if $@;
-meta_yaml_ok();
+eval "use Test::Portability::Files";
+plan skip_all => "Test::Portability::Files required for testing portability"
+  if $@;
+run_tests();

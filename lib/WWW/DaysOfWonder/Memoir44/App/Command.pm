@@ -10,15 +10,17 @@ use 5.010;
 use strict;
 use warnings;
 
-package WWW::DaysOfWonder::Memoir44::App;
+package WWW::DaysOfWonder::Memoir44::App::Command;
 BEGIN {
-  $WWW::DaysOfWonder::Memoir44::App::VERSION = '2.110310';
+  $WWW::DaysOfWonder::Memoir44::App::Command::VERSION = '2.110310';
 }
-# ABSTRACT: mem44's App::Cmd
+# ABSTRACT: base class for sub-commands
 
-use App::Cmd::Setup -app;
+use App::Cmd::Setup -command;
 
-sub allow_any_unambiguous_abbrev { 1 }
+
+# -- public methods
+
 
 1;
 
@@ -27,7 +29,7 @@ sub allow_any_unambiguous_abbrev { 1 }
 
 =head1 NAME
 
-WWW::DaysOfWonder::Memoir44::App - mem44's App::Cmd
+WWW::DaysOfWonder::Memoir44::App::Command - base class for sub-commands
 
 =head1 VERSION
 
@@ -35,15 +37,12 @@ version 2.110310
 
 =head1 DESCRIPTION
 
-This is the main application, based on the excellent L<App::Cmd>.
-Nothing much to see here, see the various subcommands available for more
-information, or run one of the following:
+This module is the base class for all sub-commands. It doesn't do
+anything special currently but trusting methods for pod coverage.
 
-    mem44 commands
-    mem44 help
-
-Note that each subcommand can be abbreviated as long as the abbreviation
-is unambiguous.
+=for Pod::Coverage::TrustPod description
+    opt_spec
+    execute
 
 =head1 AUTHOR
 

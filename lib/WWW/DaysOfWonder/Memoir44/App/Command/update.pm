@@ -1,17 +1,19 @@
-# 
+#
 # This file is part of WWW-DaysOfWonder-Memoir44
-# 
+#
 # This software is copyright (c) 2009 by Jerome Quelin.
-# 
+#
 # This is free software; you can redistribute it and/or modify it under
 # the same terms as the Perl 5 programming language system itself.
-# 
+#
 use 5.010;
 use strict;
 use warnings;
 
 package WWW::DaysOfWonder::Memoir44::App::Command::update;
-our $VERSION = '1.100140';
+BEGIN {
+  $WWW::DaysOfWonder::Memoir44::App::Command::update::VERSION = '2.110310';
+}
 # ABSTRACT: update db from dow website
 
 use HTML::TreeBuilder;
@@ -21,7 +23,8 @@ use Term::Twiddle::Quiet;
 use Text::Trim;
 
 use WWW::DaysOfWonder::Memoir44::App -command;
-use WWW::DaysOfWonder::Memoir44::DB;
+use WWW::DaysOfWonder::Memoir44::Scenario;
+use WWW::DaysOfWonder::Memoir44::DB::Scenarios;
 use WWW::DaysOfWonder::Memoir44::Url;
 
 
@@ -39,16 +42,17 @@ sub opt_spec {
 }
 
 sub execute {
-    my $self = shift;
+    my $self    = shift;
     my $twiddle = Term::Twiddle::Quiet->new;
+    my $db      = WWW::DaysOfWonder::Memoir44::DB::Scenarios->new;
 
     # the user agent will be reused
     my $ua = LWP::UserAgent->new;
-    $ua->agent('');
+    $ua->agent('WWW::DaysOfWonder::Memoir44');
     $ua->env_proxy;
 
     # remove all existing scenarios from db
-    WWW::DaysOfWonder::Memoir44::DB::Scenario->delete('');
+    $db->clear;
 
     foreach my $source ( qw{ game approved public } ) {
         # create the source url
@@ -94,11 +98,9 @@ sub execute {
             # extract scenario data from row
             my %data = _scenario_data_from_html_row($row);
             $data{source} = $source;
-            # create a scenario object and insert it in database
-            my $scenario = WWW::DaysOfWonder::Memoir44::DB::Scenario->new(
-                map { $_ => $data{$_} } keys(%data)
-            );
-            $scenario->insert;
+            # create a scenario object and store it in the database
+            my $scenario = WWW::DaysOfWonder::Memoir44::Scenario->new(%data);
+            $db->add( $scenario );
             $progress->update;
         }
         say "${prefix}: done";
@@ -106,6 +108,7 @@ sub execute {
         # source complete
         print "\n";
     }
+    $db->write;
 }
 
 
@@ -190,16 +193,12 @@ WWW::DaysOfWonder::Memoir44::App::Command::update - update db from dow website
 
 =head1 VERSION
 
-version 1.100140
+version 2.110310
 
 =head1 DESCRIPTION
 
 This command updates the database of scenarios available from days of
 wonder website.
-
-=for Pod::Coverage::TrustPod description
-    opt_spec
-    execute
 
 =head1 AUTHOR
 
@@ -216,4 +215,5 @@ the same terms as the Perl 5 programming language system itself.
 
 
 __END__
+
 
