@@ -11,8 +11,8 @@ use strict;
 use warnings;
 
 package WWW::DaysOfWonder::Memoir44::Url;
-BEGIN {
-  $WWW::DaysOfWonder::Memoir44::Url::VERSION = '2.110310';
+{
+  $WWW::DaysOfWonder::Memoir44::Url::VERSION = '2.120510';
 }
 # ABSTRACT: encapsulation of days of wonder urls
 
@@ -37,12 +37,12 @@ sub _build__uri {
     my $uri  = URI->new;
     $uri->scheme( 'http' );
     $uri->host( 'www.daysofwonder.com' );
-    $uri->path( '/memoir44/fr/scenario_list/' );
+    $uri->path( '/memoir44/en/scenario_list/' );
 
     # canonical url:
-    # http://www.daysofwonder.com/memoir44/fr/scenario_list/?sellang=fr&start=0&page_limit=2000
+    # http://www.daysofwonder.com/memoir44/en/scenario_list/?&start=0&page_limit=2000
     # other valid http options:
-    #   status      game = shipped, approved = official, public = non-dow
+    #   status      game = shipped, approved = official, public = non-dow, classified = restricted
     #   selpack_tp  terrain pack
     #   selpack_ef  east front
     #   selpack_pt  pacific theater
@@ -53,9 +53,8 @@ sub _build__uri {
     # with values: 0 = undef, 1 = with, 2 = without
     # eg: selpack_tp=1&selpack_ef=2
     my %options = (
-        sellang    => 'fr',
         start      => 0,
-        page_limit => 2000,
+        page_limit => 5000,
         status     => $self->source,
     );
 
@@ -81,7 +80,7 @@ WWW::DaysOfWonder::Memoir44::Url - encapsulation of days of wonder urls
 
 =head1 VERSION
 
-version 2.110310
+version 2.120510
 
 =head1 SYNOPSIS
 
@@ -111,7 +110,7 @@ when the object needs to be stringified by perl due to the context.
 
 =head1 AUTHOR
 
-  Jerome Quelin
+Jerome Quelin
 
 =head1 COPYRIGHT AND LICENSE
 

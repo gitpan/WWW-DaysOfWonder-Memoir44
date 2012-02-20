@@ -2,7 +2,6 @@ Build.PL
 Changes
 LICENSE
 MANIFEST
-MANIFEST.SKIP
 META.json
 META.yml
 README
@@ -15,6 +14,7 @@ lib/WWW/DaysOfWonder/Memoir44/App/Command/list.pm
 lib/WWW/DaysOfWonder/Memoir44/App/Command/update.pm
 lib/WWW/DaysOfWonder/Memoir44/DB/Params.pm
 lib/WWW/DaysOfWonder/Memoir44/DB/Scenarios.pm
+lib/WWW/DaysOfWonder/Memoir44/Filter.pm
 lib/WWW/DaysOfWonder/Memoir44/Scenario.pm
 lib/WWW/DaysOfWonder/Memoir44/Types.pm
 lib/WWW/DaysOfWonder/Memoir44/Url.pm
@@ -26,4 +26,3 @@ t/release-kwalitee.t
 t/release-minimum-version.t
 t/release-pod-coverage.t
 t/release-pod-syntax.t
-t/release-portability.t

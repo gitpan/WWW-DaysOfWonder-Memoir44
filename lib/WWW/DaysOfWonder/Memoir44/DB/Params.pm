@@ -11,8 +11,8 @@ use strict;
 use warnings;
 
 package WWW::DaysOfWonder::Memoir44::DB::Params;
-BEGIN {
-  $WWW::DaysOfWonder::Memoir44::DB::Params::VERSION = '2.110310';
+{
+  $WWW::DaysOfWonder::Memoir44::DB::Params::VERSION = '2.120510';
 }
 # ABSTRACT: various runtime params
 
@@ -20,10 +20,10 @@ use Config::Tiny;
 use MooseX::Singleton;
 use MooseX::Has::Sugar;
 
-use WWW::DaysOfWonder::Memoir44::Utils qw{ DATADIR };
+use WWW::DaysOfWonder::Memoir44::Utils qw{ $DATADIR };
 
 
-my $params_file = DATADIR->file( "params.ini" );
+my $params_file = $DATADIR->file( "params.ini" );
 
 has _params => ( ro, isa => "Config::Tiny", lazy_build );
 
@@ -65,7 +65,7 @@ WWW::DaysOfWonder::Memoir44::DB::Params - various runtime params
 
 =head1 VERSION
 
-version 2.110310
+version 2.120510
 
 =head1 SYNOPSIS
 
@@ -97,7 +97,7 @@ Store the C<$value> associated to C<$key> in the wanted section.
 
 =head1 AUTHOR
 
-  Jerome Quelin
+Jerome Quelin
 
 =head1 COPYRIGHT AND LICENSE
 

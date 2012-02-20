@@ -11,8 +11,8 @@ use strict;
 use warnings;
 
 package WWW::DaysOfWonder::Memoir44::App::Command::update;
-BEGIN {
-  $WWW::DaysOfWonder::Memoir44::App::Command::update::VERSION = '2.110310';
+{
+  $WWW::DaysOfWonder::Memoir44::App::Command::update::VERSION = '2.120510';
 }
 # ABSTRACT: update db from dow website
 
@@ -54,7 +54,7 @@ sub execute {
     # remove all existing scenarios from db
     $db->clear;
 
-    foreach my $source ( qw{ game approved public } ) {
+    foreach my $source ( qw{ game approved classified public } ) {
         # create the source url
         my $url = WWW::DaysOfWonder::Memoir44::Url->new({source=>$source});
         say "* updating $source scenarios";
@@ -149,7 +149,7 @@ sub _scenario_data_from_html_row {
     );
 
     # extract values and fill in the hash
-    my $link = $cells[9]->find_by_tag_name('a')->attr('href');
+    my $link = $cells[0]->find_by_tag_name('a')->attr('href');
     ($data{id}) = ($link =~ /id=(\d+)/);
     $data{name}      = trim($cells[0]->as_text);
     $data{operation} = trim($cells[2]->as_text);
@@ -160,13 +160,18 @@ sub _scenario_data_from_html_row {
     my $updated = trim($cells[5]->as_text);                    # dd/mm/yyyy
     $data{updated}   = join '-', reverse split /\//, $updated; # yyyy-mm-dd
 
-    # fill in booleans
+    # fill in langs, board & booleans
+    # - langs
     my @subcells = $cells[8]->find_by_tag_name('td');
+    my @langs = map { $_->attr('alt') } $subcells[1]->find_by_tag_name('img');
+    $data{languages} = \@langs;
+    # - board types
     my $boardimg = $subcells[2]->find_by_tag_name('img')->attr('src');
     $boardimg =~ /mm_board_([^_]+)_([^.]+)\.gif/
         or die "unknwon board image: $boardimg";
     $data{format} = $1;
     $data{board}  = $2;
+    # - booleans
     my @imgs =
         map { $_->attr('src') }
         $subcells[3]->find_by_tag_name('img');
@@ -193,7 +198,7 @@ WWW::DaysOfWonder::Memoir44::App::Command::update - update db from dow website
 
 =head1 VERSION
 
-version 2.110310
+version 2.120510
 
 =head1 DESCRIPTION
 
@@ -202,7 +207,7 @@ wonder website.
 
 =head1 AUTHOR
 
-  Jerome Quelin
+Jerome Quelin
 
 =head1 COPYRIGHT AND LICENSE
 

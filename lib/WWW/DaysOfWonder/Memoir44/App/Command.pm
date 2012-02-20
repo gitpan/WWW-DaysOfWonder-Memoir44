@@ -11,8 +11,8 @@ use strict;
 use warnings;
 
 package WWW::DaysOfWonder::Memoir44::App::Command;
-BEGIN {
-  $WWW::DaysOfWonder::Memoir44::App::Command::VERSION = '2.110310';
+{
+  $WWW::DaysOfWonder::Memoir44::App::Command::VERSION = '2.120510';
 }
 # ABSTRACT: base class for sub-commands
 
@@ -33,7 +33,7 @@ WWW::DaysOfWonder::Memoir44::App::Command - base class for sub-commands
 
 =head1 VERSION
 
-version 2.110310
+version 2.120510
 
 =head1 DESCRIPTION
 
@@ -46,7 +46,7 @@ anything special currently but trusting methods for pod coverage.
 
 =head1 AUTHOR
 
-  Jerome Quelin
+Jerome Quelin
 
 =head1 COPYRIGHT AND LICENSE
 

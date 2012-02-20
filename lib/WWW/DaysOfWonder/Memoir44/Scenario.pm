@@ -11,8 +11,8 @@ use strict;
 use warnings;
 
 package WWW::DaysOfWonder::Memoir44::Scenario;
-BEGIN {
-  $WWW::DaysOfWonder::Memoir44::Scenario::VERSION = '2.110310';
+{
+  $WWW::DaysOfWonder::Memoir44::Scenario::VERSION = '2.120510';
 }
 # ABSTRACT: scenario object
 
@@ -30,12 +30,12 @@ has id        => ( rw, isa=>'Int', required );
 has name      => ( rw, isa=>'Str', required );
 has operation => ( rw, isa=>'Str' );
 has updated   => ( rw, isa=>'Str', required );
-has rating    => ( rw, isa=>'Int' );
+has rating    => ( rw, isa=>'Int_0_3' );
 has front     => ( rw, isa=>'Str' );
 has author    => ( rw, isa=>'Str' );
-has board     => ( rw, isa=>'Str' );
-has format    => ( rw, isa=>'Str' );
-has source    => ( rw, isa=>'Str' );
+has board     => ( rw, isa=>'Board' );
+has format    => ( rw, isa=>'Format' );
+has source    => ( rw, isa=>'Source' );
 has need_tp   => ( rw, isa=>'Bool' );
 has need_ef   => ( rw, isa=>'Bool' );
 has need_mt   => ( rw, isa=>'Bool' );
@@ -43,6 +43,7 @@ has need_pt   => ( rw, isa=>'Bool' );
 has need_ap   => ( rw, isa=>'Bool' );
 has need_bm   => ( rw, isa=>'Bool' );
 has need_cb   => ( rw, isa=>'Bool' );
+has languages => ( rw, isa=>'ArrayRef[Str]', auto_deref );
 
 
 
@@ -56,13 +57,14 @@ sub as_string {
         R6id. L38name L34operation
         C13front C8format C7board
         C12author C10source L10updated C3rating_as_star
-        L2tp L2ef L2pt L2mt L2ap
+        L2tp L2ef L2pt L2mt L2ap L8langs
     };
     $out =~ s/([RCL])(\d+)(\w+)/$s->_format($1,$2,$3)/eg;
     return $out;
 }
 
 
+sub langs { my $s=shift; return join ",", $s->languages; }
 sub rating_as_star { my $s=shift; '*'x$s->rating; }
 sub tp { my $s=shift; $s->need_tp ? 'tp' : ''; }
 sub ef { my $s=shift; $s->need_ef ? 'ef' : ''; }
@@ -98,13 +100,11 @@ WWW::DaysOfWonder::Memoir44::Scenario - scenario object
 
 =head1 VERSION
 
-version 2.110310
+version 2.120510
 
 =head1 DESCRIPTION
 
-This module represents a scenario with all its attributes. It implements
-L<MooseX::Storage> role, and therefore methods C<pack()> and C<unpack()>
-are available.
+This module represents a scenario with all its attributes.
 
 =head1 ATTRIBUTES
 
@@ -210,6 +210,13 @@ Those five methods return either an empty string or the abbreviation of
 the expansion depending on the value of the C<need_XX> boolean attribute
 of the C<$scenario>. They are useful for display purposes.
 
+=head2 langs
+
+    my $str = $scenario->langs;
+
+Return a string with existing language versions this scenario separated
+by commas. eg C<en,fr>.
+
 =head2 rating_as_star
 
     my $str = $scenario->rating_as_star;
@@ -219,7 +226,7 @@ attribute of the C<$scenario>.
 
 =head1 AUTHOR
 
-  Jerome Quelin
+Jerome Quelin
 
 =head1 COPYRIGHT AND LICENSE
 

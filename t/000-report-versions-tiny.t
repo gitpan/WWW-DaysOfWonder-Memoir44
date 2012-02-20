@@ -52,6 +52,7 @@ eval { $v .= pmver('App::Cmd::Setup','any version') };
 eval { $v .= pmver('Config::Tiny','any version') };
 eval { $v .= pmver('DateTime','any version') };
 eval { $v .= pmver('Encode','any version') };
+eval { $v .= pmver('Exporter::Lite','any version') };
 eval { $v .= pmver('File::Find','any version') };
 eval { $v .= pmver('File::HomeDir::PathClass','any version') };
 eval { $v .= pmver('File::Spec::Functions','any version') };
@@ -59,14 +60,16 @@ eval { $v .= pmver('File::Temp','any version') };
 eval { $v .= pmver('FindBin','any version') };
 eval { $v .= pmver('HTML::TreeBuilder','any version') };
 eval { $v .= pmver('LWP::UserAgent','any version') };
+eval { $v .= pmver('Locale::TextDomain','any version') };
 eval { $v .= pmver('Module::Build','0.3601') };
 eval { $v .= pmver('Moose','any version') };
 eval { $v .= pmver('Moose::Util::TypeConstraints','any version') };
+eval { $v .= pmver('MooseX::Getopt::GLD','any version') };
 eval { $v .= pmver('MooseX::Has::Sugar','any version') };
+eval { $v .= pmver('MooseX::SemiAffordanceAccessor','any version') };
 eval { $v .= pmver('MooseX::Singleton','any version') };
 eval { $v .= pmver('Path::Class','any version') };
 eval { $v .= pmver('Storable','any version') };
-eval { $v .= pmver('Sub::Exporter','any version') };
 eval { $v .= pmver('Term::ProgressBar::Quiet','any version') };
 eval { $v .= pmver('Term::Twiddle::Quiet','any version') };
 eval { $v .= pmver('Test::More','0.88') };
@@ -74,6 +77,8 @@ eval { $v .= pmver('Text::Padding','any version') };
 eval { $v .= pmver('Text::Trim','any version') };
 eval { $v .= pmver('URI','any version') };
 eval { $v .= pmver('overload','any version') };
+eval { $v .= pmver('strict','any version') };
+eval { $v .= pmver('warnings','any version') };
 
 
 

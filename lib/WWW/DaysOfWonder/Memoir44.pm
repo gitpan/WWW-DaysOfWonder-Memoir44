@@ -11,8 +11,8 @@ use strict;
 use warnings;
 
 package WWW::DaysOfWonder::Memoir44;
-BEGIN {
-  $WWW::DaysOfWonder::Memoir44::VERSION = '2.110310';
+{
+  $WWW::DaysOfWonder::Memoir44::VERSION = '2.120510';
 }
 # ABSTRACT: download & manage memoir44 scenarios from official website
 
@@ -27,7 +27,7 @@ WWW::DaysOfWonder::Memoir44 - download & manage memoir44 scenarios from official
 
 =head1 VERSION
 
-version 2.110310
+version 2.120510
 
 =head1 DESCRIPTION
 
@@ -80,7 +80,7 @@ L<http://cpanratings.perl.org/d/WWW-DaysOfWonder-Memoir44>
 
 =head1 AUTHOR
 
-  Jerome Quelin
+Jerome Quelin
 
 =head1 COPYRIGHT AND LICENSE
 

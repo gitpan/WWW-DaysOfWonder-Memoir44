@@ -11,8 +11,8 @@ use strict;
 use warnings;
 
 package WWW::DaysOfWonder::Memoir44::App::Command::list;
-BEGIN {
-  $WWW::DaysOfWonder::Memoir44::App::Command::list::VERSION = '2.110310';
+{
+  $WWW::DaysOfWonder::Memoir44::App::Command::list::VERSION = '2.120510';
 }
 # ABSTRACT: list scenarios according to various criterias
 
@@ -20,6 +20,7 @@ use Encode qw{ encode };
 
 use WWW::DaysOfWonder::Memoir44::App -command;
 use WWW::DaysOfWonder::Memoir44::DB::Scenarios;
+use WWW::DaysOfWonder::Memoir44::Filter;
 
 
 # -- public methods
@@ -34,12 +35,24 @@ sub opt_spec {
     my $self = shift;
     return (
         [],
-        [ 'list only scenario that need extension:' ],
+        [ 'scenario information:' ],
+        [ 'id|i=i'         => 'scenario id (can be repeated)'                   ],
+        [ 'name|n=s'       => 'scenario name (treated as a no-case regex)'      ],
+        [ 'operation|o=s'  => 'scenario operation (treated as a no-case regex)' ],
+        [ 'front|w=s'      => 'scenario front (treated as a no-case regex)'     ],
+        [ 'format|fmt|f=s' => 'scenario format'                                 ],
+        [ 'board|b=s'      => 'scenario board'                                  ],
+        [],
+        [ 'extensions needed:' ],
         [ 'tp!' => 'terrain pack          (--notp to negate)' ],
         [ 'ef!' => 'east front            (--noef to negate)' ],
         [ 'pt!' => 'pacific theater       (--nopt to negate)' ],
         [ 'mt!' => 'mediterranean theater (--nomt to negate)' ],
         [ 'ap!' => 'air pack              (--noap to negate)' ],
+        [],
+        [ 'scenario meta-information:' ],
+        [ 'rating|r=i'         => 'minimum rating' ],
+        [ 'languages|lang|l=s' => 'languages of the scenario (can be repeated)' ],
     );
 }
 
@@ -47,19 +60,12 @@ sub execute {
     my ($self, $opts, $args) = @_;
 
     # prepare the filter
-    my @clauses;
-    foreach my $expansion ( qw{ tp ef pt mt ap } ) {
-        next unless defined $opts->{$expansion};
-        my $clause = '$_->need_';
-        $clause    = "!$clause" unless $opts->{$expansion};
-        push @clauses, $clause . $expansion;
-    }
-    my $grep = "sub { " . join(" & ", (1,@clauses)) . " }";
-    $grep = eval $grep;
+    my $filter = WWW::DaysOfWonder::Memoir44::Filter->new_with_options;
+    my $grep   = $filter->as_grep_clause;
+
+    # fetch the scenarios
     my $db = WWW::DaysOfWonder::Memoir44::DB::Scenarios->instance;
     $db->read;
-
-
     my @scenarios = $db->grep( $grep );
 
     # display the results
@@ -67,7 +73,6 @@ sub execute {
         say encode( 'utf-8', $s );
     }
 }
-
 
 1;
 
@@ -80,7 +85,7 @@ WWW::DaysOfWonder::Memoir44::App::Command::list - list scenarios according to va
 
 =head1 VERSION
 
-version 2.110310
+version 2.120510
 
 =head1 DESCRIPTION
 
@@ -90,7 +95,7 @@ this action.
 
 =head1 AUTHOR
 
-  Jerome Quelin
+Jerome Quelin
 
 =head1 COPYRIGHT AND LICENSE
 
@@ -103,5 +108,4 @@ the same terms as the Perl 5 programming language system itself.
 
 
 __END__
-
 

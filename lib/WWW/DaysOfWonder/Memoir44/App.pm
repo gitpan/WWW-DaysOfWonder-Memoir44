@@ -11,8 +11,8 @@ use strict;
 use warnings;
 
 package WWW::DaysOfWonder::Memoir44::App;
-BEGIN {
-  $WWW::DaysOfWonder::Memoir44::App::VERSION = '2.110310';
+{
+  $WWW::DaysOfWonder::Memoir44::App::VERSION = '2.120510';
 }
 # ABSTRACT: mem44's App::Cmd
 
@@ -31,7 +31,7 @@ WWW::DaysOfWonder::Memoir44::App - mem44's App::Cmd
 
 =head1 VERSION
 
-version 2.110310
+version 2.120510
 
 =head1 DESCRIPTION
 
@@ -47,7 +47,7 @@ is unambiguous.
 
 =head1 AUTHOR
 
-  Jerome Quelin
+Jerome Quelin
 
 =head1 COPYRIGHT AND LICENSE
 

@@ -11,8 +11,8 @@ use strict;
 use warnings;
 
 package WWW::DaysOfWonder::Memoir44::DB::Scenarios;
-BEGIN {
-  $WWW::DaysOfWonder::Memoir44::DB::Scenarios::VERSION = '2.110310';
+{
+  $WWW::DaysOfWonder::Memoir44::DB::Scenarios::VERSION = '2.120510';
 }
 # ABSTRACT: scenarios database
 
@@ -23,10 +23,10 @@ use Path::Class;
 use Storable qw{ nstore retrieve };
 
 use WWW::DaysOfWonder::Memoir44::DB::Params;
-use WWW::DaysOfWonder::Memoir44::Utils qw{ DATADIR };
+use WWW::DaysOfWonder::Memoir44::Utils qw{ $DATADIR };
 
 
-my $dbfile = DATADIR->file( "scenarios.store" );
+my $dbfile = $DATADIR->file( "scenarios.store" );
 
 has scenarios => (
     rw, auto_deref,
@@ -85,7 +85,7 @@ WWW::DaysOfWonder::Memoir44::DB::Scenarios - scenarios database
 
 =head1 VERSION
 
-version 2.110310
+version 2.120510
 
 =head1 SYNOPSIS
 
@@ -134,7 +134,7 @@ the distrib, and stored in a private directory.
 
 =head1 AUTHOR
 
-  Jerome Quelin
+Jerome Quelin
 
 =head1 COPYRIGHT AND LICENSE
 
