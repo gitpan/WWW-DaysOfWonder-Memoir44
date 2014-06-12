@@ -11,16 +11,13 @@ use strict;
 use warnings;
 
 package WWW::DaysOfWonder::Memoir44::Types;
-{
-  $WWW::DaysOfWonder::Memoir44::Types::VERSION = '2.120510';
-}
 # ABSTRACT: various types used in the distribution
-
+$WWW::DaysOfWonder::Memoir44::Types::VERSION = '3.000';
 use Moose::Util::TypeConstraints;
 
-enum Board  => qw{ beach country winter desert };
-enum Format => qw{ standard brkthru overlord };
-enum Source => qw{ game approved classified public };
+enum Board  => [ qw{ beach country winter desert } ];
+enum Format => [ qw{ standard brkthru overlord } ];
+enum Source => [ qw{ game approved classified public } ];
 
 subtype 'Int_0_3',
     as 'Int',
@@ -33,8 +30,11 @@ coerce 'Int_0_3',
 
 1;
 
+__END__
 
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -42,7 +42,7 @@ WWW::DaysOfWonder::Memoir44::Types - various types used in the distribution
 
 =head1 VERSION
 
-version 2.120510
+version 3.000
 
 =head1 DESCRIPTION
 
@@ -80,7 +80,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-
-__END__
-

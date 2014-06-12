@@ -11,19 +11,19 @@ use strict;
 use warnings;
 
 package WWW::DaysOfWonder::Memoir44::App;
-{
-  $WWW::DaysOfWonder::Memoir44::App::VERSION = '2.120510';
-}
 # ABSTRACT: mem44's App::Cmd
-
+$WWW::DaysOfWonder::Memoir44::App::VERSION = '3.000';
 use App::Cmd::Setup -app;
 
 sub allow_any_unambiguous_abbrev { 1 }
 
 1;
 
+__END__
 
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -31,7 +31,7 @@ WWW::DaysOfWonder::Memoir44::App - mem44's App::Cmd
 
 =head1 VERSION
 
-version 2.120510
+version 3.000
 
 =head1 DESCRIPTION
 
@@ -57,7 +57,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-
-__END__
-

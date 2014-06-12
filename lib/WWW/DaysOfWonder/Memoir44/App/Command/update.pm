@@ -11,11 +11,8 @@ use strict;
 use warnings;
 
 package WWW::DaysOfWonder::Memoir44::App::Command::update;
-{
-  $WWW::DaysOfWonder::Memoir44::App::Command::update::VERSION = '2.120510';
-}
 # ABSTRACT: update db from dow website
-
+$WWW::DaysOfWonder::Memoir44::App::Command::update::VERSION = '3.000';
 use HTML::TreeBuilder;
 use LWP::UserAgent;
 use Term::ProgressBar::Quiet;
@@ -189,8 +186,11 @@ sub _scenario_data_from_html_row {
 
 1;
 
+__END__
 
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -198,7 +198,7 @@ WWW::DaysOfWonder::Memoir44::App::Command::update - update db from dow website
 
 =head1 VERSION
 
-version 2.120510
+version 3.000
 
 =head1 DESCRIPTION
 
@@ -217,8 +217,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-
-__END__
-
-

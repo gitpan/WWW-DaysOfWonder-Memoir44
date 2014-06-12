@@ -13,11 +13,8 @@ use strict;
 use warnings;
 
 package mem44;
-{
-  $mem44::VERSION = '2.120510';
-}
 # ABSTRACT: download & manage memoir44 scenarios from official website
-
+$mem44::VERSION = '3.000';
 # terse error messages
 $ENV{MOOSE_ERROR_STYLE} = "croak";
 
@@ -33,9 +30,11 @@ WWW::DaysOfWonder::Memoir44::App->run;
 
 exit;
 
-
+__END__
 
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -43,7 +42,7 @@ mem44 - download & manage memoir44 scenarios from official website
 
 =head1 VERSION
 
-version 2.120510
+version 3.000
 
 =head1 SYNOPSIS
 
@@ -96,7 +95,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-
-__END__
-

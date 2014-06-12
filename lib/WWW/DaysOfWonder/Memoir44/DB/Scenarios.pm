@@ -11,11 +11,8 @@ use strict;
 use warnings;
 
 package WWW::DaysOfWonder::Memoir44::DB::Scenarios;
-{
-  $WWW::DaysOfWonder::Memoir44::DB::Scenarios::VERSION = '2.120510';
-}
 # ABSTRACT: scenarios database
-
+$WWW::DaysOfWonder::Memoir44::DB::Scenarios::VERSION = '3.000';
 use DateTime;
 use MooseX::Singleton;
 use MooseX::Has::Sugar;
@@ -76,8 +73,11 @@ sub write {
 
 1;
 
+__END__
 
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -85,7 +85,7 @@ WWW::DaysOfWonder::Memoir44::DB::Scenarios - scenarios database
 
 =head1 VERSION
 
-version 2.120510
+version 3.000
 
 =head1 SYNOPSIS
 
@@ -144,7 +144,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-
-__END__
-

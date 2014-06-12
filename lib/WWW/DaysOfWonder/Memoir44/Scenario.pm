@@ -11,14 +11,13 @@ use strict;
 use warnings;
 
 package WWW::DaysOfWonder::Memoir44::Scenario;
-{
-  $WWW::DaysOfWonder::Memoir44::Scenario::VERSION = '2.120510';
-}
 # ABSTRACT: scenario object
-
+$WWW::DaysOfWonder::Memoir44::Scenario::VERSION = '3.000';
 use Moose;
 use MooseX::Has::Sugar;
 use Text::Padding;
+
+use WWW::DaysOfWonder::Memoir44::Types;
 
 use overload q{""} => 'as_string';
 
@@ -82,17 +81,18 @@ sub _format {
     my $str = $self->$method;
 
     # fill up according to the requirements
-    given ( $align ) {
-        when ( "L" ) { return $pad->left  ($str, $maxlength); }
-        when ( "R" ) { return $pad->right ($str, $maxlength); }
-        when ( "C" ) { return $pad->center($str, $maxlength); }
-    }
+    return $pad->left  ($str, $maxlength) if $align eq "L";
+    return $pad->right ($str, $maxlength) if $align eq "R";
+    return $pad->center($str, $maxlength) if $align eq "C";
 }
 
 1;
 
+__END__
 
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -100,7 +100,7 @@ WWW::DaysOfWonder::Memoir44::Scenario - scenario object
 
 =head1 VERSION
 
-version 2.120510
+version 3.000
 
 =head1 DESCRIPTION
 
@@ -236,7 +236,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-
-__END__
-
